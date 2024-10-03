@@ -1,40 +1,51 @@
 export default class HolbertonCourse {
   constructor(name, length, students) {
-    this.name = name;
-    this.length = length;
-    this.students = students;
+    this._name = this._validateString(name, 'name');
+    this._length = this._validateNumber(length, 'length');
+    this._students = this._validateArray(students, 'students');
   }
 
+  // Getter and Setter for name
   get name() {
     return this._name;
   }
 
   set name(value) {
-    if (typeof value !== 'string') {
-      throw new TypeError('Name must be a string');
-    }
-    this._name = value;
+    this._name = this._validateString(value, 'name');
   }
 
+  // Getter and Setter for length
   get length() {
     return this._length;
   }
 
   set length(value) {
-    if (typeof value !== 'number') {
-      throw new TypeError('Length must be a number');
-    }
-    this._length = value;
+    this._length = this._validateNumber(value, 'length');
   }
 
+  // Getter and Setter for students
   get students() {
     return this._students;
   }
 
   set students(value) {
-  if (!Array.isArray(value) || !value.every(student => typeof student === 'string')) {
-    throw new TypeError('Students must be an array of strings');
+    this._students = this._validateArray(value, 'students');
   }
-  this._students = value;
-}
+
+  // Validation methods
+  // eslint-disable-next-line class-methods-use-this
+  _validateString(value, attributeName) {
+    if (typeof value !== 'string') {
+      throw new TypeError(`${attributeName} must be a string`);
+    }
+    return value;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  _validateNumber(value, attributeName) {
+    if (typeof value !== 'number') {
+      throw new TypeError(`${attributeName} must be a number`);
+    }
+    return value;
+  }
 }
