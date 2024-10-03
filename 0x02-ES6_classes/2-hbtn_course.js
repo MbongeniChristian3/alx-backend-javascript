@@ -48,4 +48,12 @@ export default class HolbertonCourse {
     }
     return value;
   }
+
+  // eslint-disable-next-line class-methods-use-this
+  _validateArray(value, attributeName) {
+    if (!Array.isArray(value) || !value.every((item) => typeof item === 'string')) {
+      throw new TypeError(`${attributeName} must be an array of strings`);
+    }
+    return value;
+  }
 }
