@@ -4,4 +4,3 @@ export default function divideFunction(a, b) {
     }
     return a / b;
 }
-
