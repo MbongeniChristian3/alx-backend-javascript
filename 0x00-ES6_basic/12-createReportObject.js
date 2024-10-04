@@ -5,7 +5,7 @@ export default function createReportObject(employeesList) {
   };
 
   // Define the getNumberOfDepartments method
-  const getNumberOfDepartments = function() {
+  const getNumberOfDepartments = function getNumberOfDepartments() {
     return Object.keys(allEmployees).length;
   };
 
@@ -15,4 +15,3 @@ export default function createReportObject(employeesList) {
     getNumberOfDepartments,
   };
 }
-
