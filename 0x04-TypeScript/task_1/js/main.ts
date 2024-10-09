@@ -1,26 +1,37 @@
-// Define the Teacher interface
-interface Teacher {
+// Define the interface for the constructor of StudentClass
+interface StudentClassConstructor {
   firstName: string;
   lastName: string;
-  fullTimeEmployee: boolean;
-  location: string;
-  yearsOfExperience?: number;  // Optional attribute
 }
 
-// Define the Directors interface, which extends Teacher
-interface Directors extends Teacher {
-  numberOfReports: number;  // Required attribute for Directors
+// Define the interface for StudentClass methods
+interface StudentClassInterface {
+  workOnHomework(): string;
+  displayName(): string;
 }
 
-// Define the printTeacher function
-function printTeacher(firstName: string, lastName: string): string {
-  return `${firstName.charAt(0)}. ${lastName}`;
-}
+// Implement the StudentClass based on the interfaces
+class StudentClass implements StudentClassInterface {
+  firstName: string;
+  lastName: string;
 
-// Define the interface for the printTeacher function
-interface printTeacherFunction {
-  (firstName: string, lastName: string): string;
+  constructor({ firstName, lastName }: StudentClassConstructor) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  // Method to return "Currently working"
+  workOnHomework(): string {
+    return "Currently working";
+  }
+
+  // Method to return the first name of the student
+  displayName(): string {
+    return this.firstName;
+  }
 }
 
 // Example usage
-console.log(printTeacher("John", "Doe"));  // Output: J. Doe
+const student1 = new StudentClass({ firstName: "John", lastName: "Doe" });
+console.log(student1.displayName());  // Output: John
+console.log(student1.workOnHomework());  // Output: Currently working
