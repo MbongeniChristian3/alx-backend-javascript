@@ -1,34 +1,26 @@
-class Teacher {
-  constructor(firstName, lastName, fullTimeEmployee, location, yearsOfExperience = null) {
-    // Private properties (modifiable only during initialization)
-    Object.defineProperty(this, 'firstName', {
-      value: firstName,
-      writable: false,  // Makes it non-modifiable after initialization
-      enumerable: true
-    });
+// Define the Teacher interface
+interface Teacher {
+  firstName: string;
+  lastName: string;
+  fullTimeEmployee: boolean;
+  location: string;
+  yearsOfExperience?: number;  // Optional attribute
+}
 
-    Object.defineProperty(this, 'lastName', {
-      value: lastName,
-      writable: false,  // Makes it non-modifiable after initialization
-      enumerable: true
-    });
+// Define the Directors interface, which extends Teacher
+interface Directors extends Teacher {
+  numberOfReports: number;  // Required attribute for Directors
+}
 
-    // Public properties
-    this.fullTimeEmployee = fullTimeEmployee;  // Always defined
-    this.location = location;                  // Always defined
-    this.yearsOfExperience = yearsOfExperience; // Optional
-  }
+// Define the printTeacher function
+function printTeacher(firstName: string, lastName: string): string {
+  return `${firstName.charAt(0)}. ${lastName}`;
+}
 
-  // Use a setter to allow additional attributes like contract(boolean) to be added
-  setAttribute(attributeName, value) {
-    this[attributeName] = value;
-  }
+// Define the interface for the printTeacher function
+interface printTeacherFunction {
+  (firstName: string, lastName: string): string;
 }
 
 // Example usage
-const teacher1 = new Teacher('John', 'Doe', true, 'New York', 5);
-
-// Adding a new attribute 'contract'
-teacher1.setAttribute('contract', true);
-
-console.log(teacher1);
+console.log(printTeacher("John", "Doe"));  // Output: J. Doe
